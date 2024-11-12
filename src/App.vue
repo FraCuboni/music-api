@@ -1,11 +1,11 @@
 <script>
 import Navbar from './components/Navbar.vue'
-import Table from './components/Table.vue'
+import SearchPage from './components/SearchPage.vue'
 export default{
   name: 'App',
   components:{
     Navbar,
-    Table,
+    SearchPage,
   },
   data(){
     return{
@@ -23,7 +23,7 @@ export default{
 
 <template>
   <Navbar />
-  <Table />
+  <SearchPage />
   
 </template>
 
