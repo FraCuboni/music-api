@@ -6,4 +6,6 @@ export const store = reactive({
     apiSecret: '709bf17fa43130f1d665e60177f3ac4d',
 
     artistsResults: [],
+    tracksResults: [],
+    albumsResults: [],
 })

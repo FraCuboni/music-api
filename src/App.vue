@@ -1,10 +1,8 @@
 <script>
-import Navbar from './components/SearchResults/SearchBar.vue'
 import SearchPage from './components/SearchPage.vue'
 export default{
   name: 'App',
   components:{
-    Navbar,
     SearchPage,
   },
   data(){
@@ -22,7 +20,6 @@ export default{
 </script>
 
 <template>
-  <Navbar />
   <SearchPage />
   
 </template>

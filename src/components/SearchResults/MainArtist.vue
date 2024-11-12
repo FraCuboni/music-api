@@ -13,58 +13,33 @@ export default{
 </script>
 
 <template>
-        <input type="text" v-model="query" @input="updateQuery()">
     <div class="container">
-        <div class="artist-card">
+        <div class="titles">
+            <div class="most-relevant">Risultato più rilevante</div>
+            <div>Brani</div>
+        </div>
+        <div v-for="artist in store.artistsResults.splice(0,1)" class="artist-card">
             <div class="image-box">
-                <div class="fake-img"></div>
+                <img v-if="artist.image[4]['#text']" :src="artist.image[4]['#text']" alt="">
+                <img v-else src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="">
             </div>
             <div class="text-box">
-                <div class="artist-name">Name</div>
-                <div class="artist-subtitle">LISTENERS</div>
+                <div class="artist-name">{{artist.name}}</div>
+                <div class="artist-subtitle">Artista</div>
             </div>
         </div>
         <!-- song list -->
         <div class="songs-list">
             <ul class="songs-box">
 
-                <li class="song">
+                <li v-for="song in store.tracksResults.splice(0,4)" class="song">
                     <div class="song-img">
-                        <div class="fake-img"></div>
+                        <!-- <img v-if="artist.image[4]['#text']" :src="artist.image[4]['#text']" alt=""> -->
+                        <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="">
                     </div>
                     <div class="song-text">
-                        <div class="song-title">Song Name</div>
-                        <div class="song-artist">Artist name</div>
-                    </div>
-                </li>
-
-                <li class="song">
-                    <div class="song-img">
-                        <div class="fake-img"></div>
-                    </div>
-                    <div class="song-text">
-                        <div class="song-title">Song Name</div>
-                        <div class="song-artist">Artist name</div>
-                    </div>
-                </li>
-
-                <li class="song">
-                    <div class="song-img">
-                        <div class="fake-img"></div>
-                    </div>
-                    <div class="song-text">
-                        <div class="song-title">Song Name</div>
-                        <div class="song-artist">Artist name</div>
-                    </div>
-                </li>
-
-                <li class="song">
-                    <div class="song-img">
-                        <div class="fake-img"></div>
-                    </div>
-                    <div class="song-text">
-                        <div class="song-title">Song Name</div>
-                        <div class="song-artist">Artist name</div>
+                        <div class="song-title">{{song.name}}</div>
+                        <div class="song-artist">{{song.artist}}</div>
                     </div>
                 </li>
 
@@ -86,12 +61,29 @@ export default{
     background-color: $black;
     // flex
     display: flex;
+    flex-wrap: wrap;
+
+    .titles{
+        font-size: 30px;
+        font-weight: 600;
+        width: 100%;
+        padding: 30px 2.5% 5px;
+        color: $p_txt;
+
+        // flex
+        display: flex;
+
+        .most-relevant{
+            width: 40%;
+        }
+    }
 
     .artist-card{
         height: 100%;
-        width: 40%;
+        width: calc(40% - 20px);
         border-radius: $b_rad;
         max-height: 342px;
+        margin-right: 20px;
 
         &:hover{
             background-color: $dark_grey;
@@ -163,6 +155,7 @@ export default{
                     aspect-ratio: 1/1;
                     background-color: $dark_grey;
                     border-radius: $b_rad;
+                    overflow: hidden;
                 }
                 .song-text{
                     // flex
@@ -178,6 +171,10 @@ export default{
                     .song-artist{
                         font-size: 16px;
                         color: $s_txt;
+
+                        &:hover{
+                            text-decoration: underline;
+                        }
                     }
                 }
 

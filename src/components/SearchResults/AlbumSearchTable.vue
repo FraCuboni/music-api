@@ -3,7 +3,7 @@ import { store } from '../../../store';
 import axios from 'axios';
 
 export default{
-  name: 'ArtistsSearchTable',
+  name: 'AlbumSearchTable',
   data(){
     return{
         store,
@@ -16,17 +16,15 @@ export default{
 
 <template>
     <div class="container">
-        <div class="title">Artisti</div>
-        <div v-for="artist in store.artistsResults.slice(0,5)" class="artist-card-box">
+        <div class="title">Album</div>
+        <div v-for="album in store.albumsResults.slice(0,5)" class="album-card-box">
             <div class="image-box">
-                <img v-if="artist.image[4]['#text']" :src="artist.image[4]['#text']" alt="">
-                <img v-else src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="">
-
-
+                <!-- <img v-if="album.image[4]['#text']" :src="album.image[4]['#text']" alt=""> -->
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="">
             </div>
             <div class="text-box">
-                <div class="artist-name">{{ artist.name }}</div>
-                <div class="artist-subtitle">Artista</div>
+                <div class="album-name">{{ album.name }}</div>
+                <div class="artist">{{ album.artist }}</div>
             </div>
         </div>
     </div>
@@ -62,7 +60,7 @@ export default{
         color: $p_txt;
     }
 
-    .artist-card-box{
+    .album-card-box{
         width: 20%;
         padding: 20px 20px 0;
         border-radius: $b_rad;
@@ -82,7 +80,7 @@ export default{
             display: flex;
 
             img{
-                border-radius: 50%;
+                border-radius: $b_rad;
             }
 
             .fake-img{
@@ -95,12 +93,12 @@ export default{
         .text-box{
             padding: 5%;
             
-            .artist-name{
+            .album-name{
                 font-size: 20px;
                 font-weight: 700;
                 color: $p_txt;
             }
-            .artist-subtitle{
+            .artist{
                 padding-top: 5px;
                 color: $s_txt;
             }
