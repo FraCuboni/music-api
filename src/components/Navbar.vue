@@ -1,12 +1,7 @@
 <script>
-import Navbar from './components/Navbar.vue'
-import Table from './components/Table.vue'
+
 export default{
-  name: 'App',
-  components:{
-    Navbar,
-    Table,
-  },
+  name: 'Navbar',
   data(){
     return{
 
@@ -22,8 +17,6 @@ export default{
 </script>
 
 <template>
-  <Navbar />
-  <Table />
   
 </template>
 
