@@ -7,47 +7,13 @@ export default{
   data(){
     return{
         store,
-        query:'Gorillaz',
     }
-  },
-  methods:{
-    searchArtist(){
-        if(this.query){
-        const url = `${store.apiUrl}?method=artist.search&artist=${this.query}&api_key=${store.apiKey}&format=json`;
-        axios.get(url)
-            .then(response => {
-                store.artistsResults = response.data.results.artistmatches.artist;
-                console.log(response.data.results.artistmatches.artist);
-                console.log(store.artistsResults);
-            })
-            .catch(error => {
-                console.error('Errore nella richiesta API:', error);
-            });
-        }else{
-            store.artistsResults=[];
-        }
-    },
-
-    updateQuery(){
-        this.searchArtist();
-        console.log(this.query)
-    },
-
-  },
-  mounted(){
-    this.searchArtist();
   }
 }
 </script>
 
 <template>
-    <h1>API INFO</h1>
-    <ul>
-        <li>Url: {{ store.apiUrl }}</li>
-        <li>Key: {{ store.apiKey }}</li>
-        <li>Secret: {{ store.apiSecret }}</li>
         <input type="text" v-model="query" @input="updateQuery()">
-    </ul>
     <div class="container">
         <div class="artist-card">
             <div class="image-box">
@@ -58,12 +24,53 @@ export default{
                 <div class="artist-subtitle">LISTENERS</div>
             </div>
         </div>
-        <div class="songs-list">asdasd</div>
+        <!-- song list -->
+        <div class="songs-list">
+            <ul class="songs-box">
+
+                <li class="song">
+                    <div class="song-img">
+                        <div class="fake-img"></div>
+                    </div>
+                    <div class="song-text">
+                        <div class="song-title">Song Name</div>
+                        <div class="song-artist">Artist name</div>
+                    </div>
+                </li>
+
+                <li class="song">
+                    <div class="song-img">
+                        <div class="fake-img"></div>
+                    </div>
+                    <div class="song-text">
+                        <div class="song-title">Song Name</div>
+                        <div class="song-artist">Artist name</div>
+                    </div>
+                </li>
+
+                <li class="song">
+                    <div class="song-img">
+                        <div class="fake-img"></div>
+                    </div>
+                    <div class="song-text">
+                        <div class="song-title">Song Name</div>
+                        <div class="song-artist">Artist name</div>
+                    </div>
+                </li>
+
+                <li class="song">
+                    <div class="song-img">
+                        <div class="fake-img"></div>
+                    </div>
+                    <div class="song-text">
+                        <div class="song-title">Song Name</div>
+                        <div class="song-artist">Artist name</div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
     </div>
-
-
-
-<!-- ====== Cards Section End -->
 
 
 
@@ -77,7 +84,6 @@ export default{
     width: 80%;
     min-height: 200px;
     background-color: $black;
-
     // flex
     display: flex;
 
@@ -85,9 +91,15 @@ export default{
         height: 100%;
         width: 40%;
         border-radius: $b_rad;
+        max-height: 342px;
 
         &:hover{
-            background-color: $light_grey;
+            background-color: $dark_grey;
+
+        }
+        &:hover>.image-box>.fake-img{
+            background-color: $black;
+
         }
 
         .image-box{
@@ -122,9 +134,65 @@ export default{
         }
     }
     .songs-list{
-        background-color: yellow;
-        height: 100%;
         width: 60%;
+        max-height: 342px;
+
+
+        .songs-box{
+            height: 100%;
+            width: 100%;
+            border-radius: $b_rad;
+
+            // flex
+            display: flex;
+            flex-direction: column;
+
+            .song{
+                height: 25%;
+                max-height: 300px;
+                width: 100%;
+                padding: 10px;
+                border-radius: $b_rad;
+
+                // flex
+                display: flex;
+                gap: 10px;
+
+                .song-img{
+                    height: 100%;
+                    aspect-ratio: 1/1;
+                    background-color: $dark_grey;
+                    border-radius: $b_rad;
+                }
+                .song-text{
+                    // flex
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    gap: 2px;
+
+                    .song-title{
+                        font-size: 18px;
+                        color: $p_txt;
+                    }
+                    .song-artist{
+                        font-size: 16px;
+                        color: $s_txt;
+                    }
+                }
+
+
+                &:hover{
+                    background-color: $dark_grey;
+
+                }
+
+                &:hover>.song-img{
+                    background-color: $black;
+
+                }
+            }
+        }
     }
 }
 </style>

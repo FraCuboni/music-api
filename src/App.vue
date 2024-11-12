@@ -1,5 +1,5 @@
 <script>
-import Navbar from './components/Navbar.vue'
+import Navbar from './components/SearchResults/SearchBar.vue'
 import SearchPage from './components/SearchPage.vue'
 export default{
   name: 'App',

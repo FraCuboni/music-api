@@ -16,20 +16,16 @@ export default{
 
 <template>
     <div class="container">
-        <div v-for="artist in store.artistsResults" class="artist-card-box">
+        <div v-for="artist in store.artistsResults.slice(0,5)" class="artist-card-box">
             <div class="image-box">
                 <img v-if="artist.image[4]['#text']" :src="artist.image[4]['#text']" alt="">
-                <img v-else-if="artist.image[3]['#text']" :src="artist.image[3]['#text']" alt="">
-                <img v-else-if="artist.image[2]['#text']" :src="artist.image[2]['#text']" alt="">
-                <img v-else-if="artist.image[1]['#text']" :src="artist.image[1]['#text']" alt="">
-                <img v-else-if="artist.image[0]['#text']" :src="artist.image[0]['#text']" alt="">
-                <div  v-else class="fake-img"></div>
+                <img v-else src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="">
 
 
             </div>
             <div class="text-box">
                 <div class="artist-name">{{ artist.name }}</div>
-                <div class="artist-subtitle">{{ artist.listeners }}</div>
+                <div class="artist-subtitle"><i class="fa-solid fa-music"></i>     {{ artist.listeners }}</div>
             </div>
         </div>
     </div>
@@ -46,7 +42,6 @@ export default{
 @use '../../../styles/partials/variables.scss' as *;
 
 .container{
-    border: 5px solid red;
     margin: 0 auto;
     width: 80%;
     min-height: 200px;
@@ -54,8 +49,8 @@ export default{
 
     // flex
     display: flex;
-    flex-wrap: wrap;
     justify-content: start;
+    overflow: scroll;
     
 
     .artist-card-box{
@@ -65,6 +60,10 @@ export default{
 
         &:hover{
             background-color: $dark_grey;
+        }
+        &:hover>.image-box>.fake-img{
+            background-color: $black;
+
         }
 
         .image-box{
