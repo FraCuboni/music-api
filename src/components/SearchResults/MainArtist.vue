@@ -8,6 +8,13 @@ export default{
     return{
         store,
     }
+  },
+  methods:{
+    goToArtistPage(artistName) {
+      this.$router.push({ 
+        path: `/artist/${artistName}` 
+      });
+    },
   }
 }
 </script>
@@ -18,7 +25,10 @@ export default{
             <div class="most-relevant">Risultato più rilevante</div>
             <div>Brani</div>
         </div>
-        <div v-for="artist in store.artistsResults.splice(0,1)" class="artist-card">
+
+        <!-- artist card -->
+        <div v-for="artist in store.artistsResults.slice(0,1)" :key="artist.name"  @click="$router.push(`/artist/${artist.name}`)" class="artist-card">
+
             <div class="image-box">
                 <img src="../../../public/artist.png" alt="">
             </div>
@@ -26,12 +36,15 @@ export default{
                 <div class="artist-name">{{artist.name}}</div>
                 <div class="artist-subtitle">Artista</div>
             </div>
+
         </div>
+
+
         <!-- song list -->
         <div class="songs-list">
             <ul class="songs-box">
 
-                <li v-for="song in store.tracksResults.splice(0,4)" class="song">
+                <li v-for="song in store.tracksResults.slice(0,4)" class="song">
                     <div class="song-img">
                         <img src="../../../public/song.png" alt="">
                     </div>

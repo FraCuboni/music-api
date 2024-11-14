@@ -4,9 +4,10 @@ import SearchPage from './src/components/SearchPage.vue';
 import ArtistPage from './src/components/ArtistPage.vue';
 
 const routes = [
+    { path: '/', redirect: '/home' },
     { path: '/home', component: Home },
     { path: '/search', component: SearchPage },
-    { path: '/artist', component: ArtistPage }
+    { path: '/artist/:name', component: ArtistPage },
 ];
 
 const router = createRouter({

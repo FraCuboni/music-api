@@ -11,15 +11,19 @@ export default{
   },
   methods:{
     redirectToSearch() {
-      this.$router.push('/search');
+      if(store.query!=0){
+        this.$router.push('/search');
+      }else{
+        this.$router.push('/home');
+      }
     },
     searchArtist(){
         const url = `${store.apiUrl}?method=artist.search&artist=${store.query}&api_key=${store.apiKey}&format=json`;
         axios.get(url)
             .then(response => {
                 store.artistsResults = response.data.results.artistmatches.artist;
-                console.log(response.data.results.artistmatches.artist);
-                console.log(store.artistsResults);
+                // console.log(response.data.results.artistmatches.artist);
+                // console.log('artists',store.artistsResults);
             })
             .catch(error => {
                 console.error('Errore nella richiesta API:', error);
@@ -30,8 +34,8 @@ export default{
     axios.get(url)
         .then(response => {
             store.tracksResults = response.data.results.trackmatches.track;
-            console.log(response.data.results.trackmatches.track);
-            console.log(store.tracksResults);
+            // console.log(response.data.results.trackmatches.track);
+            // console.log('tracks',store.tracksResults);
         })
         .catch(error => {
             console.error('Errore nella richiesta API:', error);
@@ -42,8 +46,8 @@ export default{
     axios.get(url)
         .then(response => {
             store.albumsResults = response.data.results.albummatches.album;
-            console.log(response.data.results.albummatches.album);
-            console.log('albums',store.albumsResults);
+            // console.log(response.data.results.albummatches.album);
+            // console.log('albums',store.albumsResults);
         })
         .catch(error => {
             console.error('Errore nella richiesta API:', error);
@@ -51,9 +55,10 @@ export default{
     },
 
     updateQuery(){
-        this.searchArtist();
-        this.searchTrack();
-        this.searchAlbum();
+      this.redirectToSearch()
+      this.searchArtist();
+      this.searchTrack();
+      this.searchAlbum();
     },
 
   },
@@ -68,7 +73,7 @@ export default{
 <template>
   <div class="container">
     <div class="home"><a href="/home"><i class="fa-solid fa-house"></i></a></div>
-    <input type="text" placeholder="Cosa vuoi ascoltare?" v-model="query" @input="updateQuery()" @click="redirectToSearch()">
+    <input type="text" placeholder="Cosa vuoi ascoltare?" v-model="store.query" @input="updateQuery()">
   </div>
 </template>
 
