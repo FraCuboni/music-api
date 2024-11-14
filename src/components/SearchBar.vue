@@ -1,18 +1,20 @@
 <script>
-import { store } from '../../../store';
+import { store } from '../../store';
 import axios from 'axios';
 
 export default{
-  name: 'Navbar',
+  name: 'Searchbar',
   data(){
     return{
         store,
-        query:'o',
     }
   },
   methods:{
+    redirectToSearch() {
+      this.$router.push('/search');
+    },
     searchArtist(){
-        const url = `${store.apiUrl}?method=artist.search&artist=${this.query}&api_key=${store.apiKey}&format=json`;
+        const url = `${store.apiUrl}?method=artist.search&artist=${store.query}&api_key=${store.apiKey}&format=json`;
         axios.get(url)
             .then(response => {
                 store.artistsResults = response.data.results.artistmatches.artist;
@@ -24,7 +26,7 @@ export default{
             });
     },
     searchTrack() {
-    const url = `${store.apiUrl}?method=track.search&track=${this.query}&api_key=${store.apiKey}&format=json`;
+    const url = `${store.apiUrl}?method=track.search&track=${store.query}&api_key=${store.apiKey}&format=json`;
     axios.get(url)
         .then(response => {
             store.tracksResults = response.data.results.trackmatches.track;
@@ -36,7 +38,7 @@ export default{
         });
     },
     searchAlbum() {
-    const url = `${store.apiUrl}?method=album.search&album=${this.query}&api_key=${store.apiKey}&format=json`;
+    const url = `${store.apiUrl}?method=album.search&album=${store.query}&api_key=${store.apiKey}&format=json`;
     axios.get(url)
         .then(response => {
             store.albumsResults = response.data.results.albummatches.album;
@@ -65,12 +67,13 @@ export default{
 
 <template>
   <div class="container">
-    <input type="text" v-model="query" @input="updateQuery()">
+    <div class="home"><a href="/home"><i class="fa-solid fa-house"></i></a></div>
+    <input type="text" placeholder="Cosa vuoi ascoltare?" v-model="query" @input="updateQuery()" @click="redirectToSearch()">
   </div>
 </template>
 
 <style scoped lang="scss">
-@use '../../../styles/partials/variables.scss' as *;
+@use '../../styles/partials/variables.scss' as *;
 
 .container{
     margin: 0 auto;
@@ -80,6 +83,22 @@ export default{
     padding: 10px;
     // flex
     display: flex;
+    gap: 5px;
+
+    .home{
+      background-color: $dark_grey;
+
+      height: 40px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      color: $light_grey;
+      font-size: 20px;
+
+      // flex
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     input{
       height: 40px;
@@ -88,7 +107,7 @@ export default{
       padding: 5px 10px;
       border: none;
       background-color: $dark_grey;
-      color: $p_txt;
+      color: $s_txt;
     }
   }
 

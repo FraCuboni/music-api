@@ -19,8 +19,7 @@ export default{
         <div class="title">Album</div>
         <div v-for="album in store.albumsResults.slice(0,5)" class="album-card-box">
             <div class="image-box">
-                <!-- <img v-if="album.image[4]['#text']" :src="album.image[4]['#text']" alt=""> -->
-                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="">
+                <img src="../../../public/album.png" alt="">
             </div>
             <div class="text-box">
                 <div class="album-name">{{ album.name }}</div>

@@ -20,8 +20,7 @@ export default{
         </div>
         <div v-for="artist in store.artistsResults.splice(0,1)" class="artist-card">
             <div class="image-box">
-                <img v-if="artist.image[4]['#text']" :src="artist.image[4]['#text']" alt="">
-                <img v-else src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="">
+                <img src="../../../public/artist.png" alt="">
             </div>
             <div class="text-box">
                 <div class="artist-name">{{artist.name}}</div>
@@ -34,8 +33,7 @@ export default{
 
                 <li v-for="song in store.tracksResults.splice(0,4)" class="song">
                     <div class="song-img">
-                        <!-- <img v-if="artist.image[4]['#text']" :src="artist.image[4]['#text']" alt=""> -->
-                        <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="">
+                        <img src="../../../public/song.png" alt="">
                     </div>
                     <div class="song-text">
                         <div class="song-title">{{song.name}}</div>

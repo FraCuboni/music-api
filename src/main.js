@@ -1,13 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-// sass
+// Router
+import router from '../router'
+// Sass
 import './style.scss'
-// fontawesome
+// FontAwesome
 import '@fortawesome/fontawesome-free/css/all.css'
-// font
+// Font
 import '@fontsource/inter'
 
 
-
-
-createApp(App).mount('#app')
+createApp(App).use(router).mount('#app')

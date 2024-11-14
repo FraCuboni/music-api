@@ -1,12 +1,10 @@
 <script>
-import SearchBar from '../components/SearchResults/SearchBar.vue'
 import MainArtist from './SearchResults/MainArtist.vue';
 import ArtistSearchTable from './SearchResults/ArtistSearchTable.vue'
 import AlbumSearchTable from './SearchResults/AlbumSearchTable.vue';
 export default{
   name: 'SearchPage',
   components:{
-    SearchBar,
     MainArtist,
     ArtistSearchTable,
     AlbumSearchTable,
@@ -27,7 +25,6 @@ export default{
 
 <template>
   <div class="container">
-    <SearchBar />
     <MainArtist />
     <ArtistSearchTable />
     <AlbumSearchTable />

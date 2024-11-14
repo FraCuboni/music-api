@@ -19,8 +19,7 @@ export default{
         <div class="title">Artisti</div>
         <div v-for="artist in store.artistsResults.slice(0,5)" class="artist-card-box">
             <div class="image-box">
-                <img v-if="artist.image[4]['#text']" :src="artist.image[4]['#text']" alt="">
-                <img v-else src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="">
+                <img src="../../../public/artist.png" alt="">
 
 
             </div>
