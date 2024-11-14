@@ -15,6 +15,7 @@ export default{
 </script>
 
 <template>
+
     <div class="container">
         <div class="title">Album</div>
         <div v-for="album in store.albumsResults.slice(0,5)" class="album-card-box">
@@ -23,16 +24,10 @@ export default{
             </div>
             <div class="text-box">
                 <div class="album-name">{{ album.name }}</div>
-                <div class="artist">{{ album.artist }}</div>
+                <div @click="$router.push(`/artist/${album.artist}`)" class="artist">{{ album.artist }}</div>
             </div>
         </div>
     </div>
-
-
-
-<!-- ====== Cards Section End -->
-
-
 
 </template>
 
@@ -100,6 +95,10 @@ export default{
             .artist{
                 padding-top: 5px;
                 color: $s_txt;
+
+                &:hover{
+                    text-decoration: underline;
+                }
             }
         }
     }

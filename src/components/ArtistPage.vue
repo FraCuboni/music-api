@@ -11,14 +11,14 @@ export default{
         store,
     }
   },
+
   methods: {
     async fetchArtistData() {
       try {
-        // Raccoglie il nome dell’artista dalla route dinamica
         const artistName = this.$route.params.name;
         const url = `${store.apiUrl}?method=artist.getinfo&artist=${artistName}&api_key=${store.apiKey}&format=json`;
         const response = await axios.get(url);
-        store.artistData = response.data.artist; // Salvo i dati dell’artista
+        store.artistData = response.data.artist;
         console.log('artistData',store.artistData);
       } catch (error) {
         console.error("Errore nel recupero dei dati dell'artista:", error);
@@ -27,11 +27,10 @@ export default{
 
     async fetchTopTracks() {
         try {
-            // Ottieni il nome dell'artista
             const artistName = this.$route.params.name;
             const url = `${store.apiUrl}?method=artist.getTopTracks&artist=${artistName}&api_key=${store.apiKey}&format=json&limit=5`; // Limita a 5 brani
             const response = await axios.get(url);
-            store.artistTopTracks = response.data.toptracks.track; // Salvo le tracce
+            store.artistTopTracks = response.data.toptracks.track;
             console.log('topTracks',store.artistTopTracks);
         } catch (error) {
             console.error("Errore nel recupero delle tracce popolari:", error);
@@ -40,22 +39,23 @@ export default{
 
     async fetchTopAlbums() {
         try {
-            // Ottieni il nome dell'artista
             const artistName = this.$route.params.name;
             const url = `${store.apiUrl}?method=artist.getTopAlbums&artist=${artistName}&api_key=${store.apiKey}&format=json&limit=6`; // Limita a 5 album
             const response = await axios.get(url);
-            store.artistTopAlbums = response.data.topalbums.album; // Salvo gli album
+            store.artistTopAlbums = response.data.topalbums.album;
             console.log('topAlbums',store.artistTopAlbums);
         } catch (error) {
             console.error("Errore nel recupero degli album popolari:", error);
         }
     },
   },
+
   mounted() {
     this.fetchArtistData();
     this.fetchTopTracks();
     this.fetchTopAlbums();
   },
+
 }
 </script>
 
@@ -66,7 +66,7 @@ export default{
         <div class="artist-verified"><i class="fa-solid fa-certificate"></i>   Artista verificato</div>
         <div class="artist-info">
             <div class="artist-name">{{ store.artistData.name }}</div>
-            <!-- <div class="artist-listeners">{{ artistData.stats.listeners }} ascoltatori mensili</div> -->
+            <div class="artist-listeners">X ascoltatori mensili</div>
         </div>
     </div>
 
@@ -74,7 +74,7 @@ export default{
         <div class="title">Popolari</div>
         <ul class="songs-box">
 
-            <li v-for="track in store.artistTopTracks"  class="song">
+            <li v-for="track in store.artistTopTracks" class="song">
                 <div class="main-info">
                     <div class="number"></div>
                     <div class="song-img">
@@ -171,9 +171,13 @@ export default{
                 width: 100%;
                 padding: 10px;
                 border-radius: $b_rad;
-
                 // flex
                 display: flex;
+
+                &:hover{
+                    background-color: $dark_grey;
+
+                }
 
                 .main-info{
                     width: 70%;
@@ -250,6 +254,12 @@ export default{
             width: calc(100% / 6);
             height: 250px;
             padding: 10px;
+            border-radius: $b_rad;
+            
+            &:hover{
+                background-color: $dark_grey;
+
+            }
 
             .image-box{
                 border-radius: $b_rad;

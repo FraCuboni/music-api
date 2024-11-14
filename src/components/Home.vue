@@ -1,7 +1,10 @@
 <script>
+import TopArtists from './HomeResults/TopArtists.vue';
+
 export default{
   name: 'Home',
   components:{
+    TopArtists,
   },
   data(){
     return{
@@ -21,8 +24,10 @@ export default{
   <div class="container">
     <div class="jumbo">
       <div class="vinyl"><i class="fa-solid fa-compact-disc"></i></div>
-      <!-- <div class="welcome">Welcome!</div> -->
     </div>
+
+   <TopArtists />
+
   </div>
 </template>
 
@@ -44,7 +49,8 @@ export default{
 
     .vinyl{
       position: absolute;
-      animation: rotateInfinite 5000ms linear infinite;
+      width: 100%;
+      height: 100%;
 
       // flex
       display: flex;
@@ -52,15 +58,12 @@ export default{
       align-items: center;
 
       i{
+        animation: rotateInfinite 5000ms linear infinite;
         color: $green;
         font-size: 250px;
       }
     }
-    .welcome{
-      color: $p_txt;
-      font-size: 90px;
-      z-index: 1;
-    }
+
   }
 
   @keyframes rotateInfinite {

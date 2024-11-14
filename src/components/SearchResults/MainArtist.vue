@@ -10,11 +10,6 @@ export default{
     }
   },
   methods:{
-    goToArtistPage(artistName) {
-      this.$router.push({ 
-        path: `/artist/${artistName}` 
-      });
-    },
   }
 }
 </script>
@@ -50,7 +45,7 @@ export default{
                     </div>
                     <div class="song-text">
                         <div class="song-title">{{song.name}}</div>
-                        <div class="song-artist">{{song.artist}}</div>
+                        <div @click="$router.push(`/artist/${song.artist}`)" class="song-artist">{{song.artist}}</div>
                     </div>
                 </li>
 
@@ -93,7 +88,7 @@ export default{
         height: 100%;
         width: calc(40% - 20px);
         border-radius: $b_rad;
-        max-height: 342px;
+        height: 360px;
         margin-right: 20px;
 
         &:hover{
@@ -123,8 +118,7 @@ export default{
             }
         }
         .text-box{
-            padding: 5%;
-            
+            padding:0 5% 5%;
             .artist-name{
                 font-size: 20px;
                 font-weight: 700;
@@ -138,7 +132,7 @@ export default{
     }
     .songs-list{
         width: 60%;
-        max-height: 342px;
+        height: 360px;
 
 
         .songs-box{

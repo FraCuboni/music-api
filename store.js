@@ -11,7 +11,7 @@ export const store = reactive({
     tracksResults: [],
     albumsResults: [],
 
-    // 
+    // artistpage
     artistData: [],
     artistTopTracks: [],
     artistTopAlbums: [],

@@ -3,24 +3,39 @@ import { store } from '../../../store';
 import axios from 'axios';
 
 export default{
-  name: 'ArtistsSearchTable',
+  name: 'TopArtists',
   data(){
     return{
         store,
+        topArtistsData:[],
     }
   },
   methods:{
+    getTopArtists() {
+      const url = `${store.apiUrl}?method=chart.getTopArtists&api_key=${store.apiKey}&format=json&limit=5`;
+
+      return axios.get(url)
+        .then(response => {
+          this.topArtistsData = response.data.artists.artist;
+          console.log('topArtists',this.topArtistsData)
+        })
+        .catch(error => {
+          console.error('Errore nel recupero dei dati degli artisti:', error);
+        });
+    },
   },
+  mounted(){
+    this.getTopArtists();
+  }
 }
 </script>
 
 <template>
     <div class="container">
-        <div class="title">Artisti</div>
-        <div v-for="artist in store.artistsResults.slice(0,5)" @click="$router.push(`/artist/${artist.name}`)" class="artist-card-box">
+        <div class="title">Più ascoltati</div>
+        <div @click="$router.push(`/artist/${artist.name}`)" v-for="artist in topArtistsData" class="artist-card-box">
             <div class="image-box">
                 <img src="../../../public/artist.png" alt="">
-
 
             </div>
             <div class="text-box">
