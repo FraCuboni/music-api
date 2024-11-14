@@ -43,7 +43,19 @@ export default{
 
     </div>
 
-    <div class="song-list"></div>
+    <div class="song-list">
+        <ul>
+            <li>    
+                <div class="number">1</div>
+                <div class="title-artist">
+                    <div class="song-title">Weird Fishes</div>
+                    <div class="song-artist">Radiohead</div>
+                </div>
+                <div class="stream">12345678</div>
+                <div class="time">00:00</div>
+            </li>
+        </ul>
+    </div>
 
 
     </div>
@@ -121,7 +133,55 @@ export default{
     }
 
     .song-list{
-        
+        background-color: $black;
+        padding: 15px;
+        padding-top: 50px;
+
+        ul{
+            li{
+                height: 70px;
+                border-radius: $b_rad;
+                padding:0 30px;
+                
+                // flex
+                display: flex;
+                align-items: center;
+
+                &:hover{
+                    background-color: $dark_grey;
+                }
+                .number{
+                    width: 2%;
+                    color: $s_txt;
+                }
+                .title-artist{
+                    width: 68%;
+                    padding-left: 15px;
+                    .song-title{
+                        color: $p_txt;
+                        font-weight: 600;
+                        font-size: 18px;
+                        padding-bottom: 2px;
+                    }
+                    .song-artist{
+                        padding-top: 2px;
+                        color: $s_txt;
+
+                    }
+                }
+                .stream{
+                    width: 20%;
+                    color: $s_txt;
+
+                }
+                .time{
+                    width: 10%;
+                    color: $s_txt;
+                    text-align: right;
+
+                }
+            }
+        }
     }
 }
 </style>
